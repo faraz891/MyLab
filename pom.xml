@@ -4,8 +4,13 @@
   <groupId>com.vinaysdevopslab</groupId>
   <artifactId>VinayDevOpsLab</artifactId>
   <packaging>war</packaging>
+<<<<<<< HEAD
   <version>0.0.8</version>
   <name>RezaDevOpsLab</name>
+=======
+  <version>0.0.8-SNAPSHOT</version>
+  <name>VinayDevOpsLab</name>
+>>>>>>> 22e69e001fba9911abc1eee2d1200466b7266d83
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
