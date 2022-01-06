@@ -42,7 +42,7 @@ pipeline{
                 type: 'war']], 
                 credentialsId: 'Nexus', 
                 groupId: "${GroupId}", 
-                nexusUrl: '54.191.241.120:8081', 
+                nexusUrl: '18.236.130.62:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
                 repository: "${NexusRepo}", 
@@ -61,49 +61,49 @@ pipeline{
                     }
                 }
 
-    //     // Stage 5 : Deploying the build artifact to Apache Tomcat
-    //     stage ('Deploy to Tomcat'){
-    //         steps {
-    //             echo "Deploying ...."
-    //             sshPublisher(publishers: 
-    //             [sshPublisherDesc(
-    //                 configName: 'Ansible_Controller', 
-    //                 transfers: [
-    //                     sshTransfer(
-    //                             cleanRemote:false,
-    //                             execCommand: 'ansible-playbook /opt/playbooks/downloadanddeploy_as_tomcat_user.yaml -i /opt/playbooks/hosts',
-    //                             execTimeout: 120000
-    //                     )
-    //                 ], 
-    //                 usePromotionTimestamp: false, 
-    //                 useWorkspaceInPromotion: false, 
-    //                 verbose: false)
-    //                 ])
+        // Stage 5 : Deploying the build artifact to Apache Tomcat
+        stage ('Deploy to Tomcat'){
+            steps {
+                echo "Deploying ...."
+                sshPublisher(publishers: 
+                [sshPublisherDesc(
+                    configName: 'Ansible_Controller', 
+                    transfers: [
+                        sshTransfer(
+                                cleanRemote:false,
+                                execCommand: 'ansible-playbook /opt/playbooks/downloadanddeploy_as_tomcat_user.yaml -i /opt/playbooks/hosts',
+                                execTimeout: 120000
+                        )
+                    ], 
+                    usePromotionTimestamp: false, 
+                    useWorkspaceInPromotion: false, 
+                    verbose: false)
+                    ])
             
-    //         }
-    //     }
+            }
+        }
 
-    // // Stage 6 : Deploying the build artifact to Docker
-    //     stage ('Deploy to Docker'){
-    //         steps {
-    //             echo "Deploying ...."
-    //             sshPublisher(publishers: 
-    //             [sshPublisherDesc(
-    //                 configName: 'Ansible_Controller', 
-    //                 transfers: [
-    //                     sshTransfer(
-    //                             cleanRemote:false,
-    //                             execCommand: 'ansible-playbook /opt/playbooks/downloadanddeploy_docker.yaml -i /opt/playbooks/hosts',
-    //                             execTimeout: 120000
-    //                     )
-    //                 ], 
-    //                 usePromotionTimestamp: false, 
-    //                 useWorkspaceInPromotion: false, 
-    //                 verbose: false)
-    //                 ])
+    // Stage 6 : Deploying the build artifact to Docker
+        stage ('Deploy to Docker'){
+            steps {
+                echo "Deploying ...."
+                sshPublisher(publishers: 
+                [sshPublisherDesc(
+                    configName: 'Ansible_Controller', 
+                    transfers: [
+                        sshTransfer(
+                                cleanRemote:false,
+                                execCommand: 'ansible-playbook /opt/playbooks/downloadanddeploy_docker.yaml -i /opt/playbooks/hosts',
+                                execTimeout: 120000
+                        )
+                    ], 
+                    usePromotionTimestamp: false, 
+                    useWorkspaceInPromotion: false, 
+                    verbose: false)
+                    ])
             
-    //         }
-    //     }
+            }
+        }
 
 
 
